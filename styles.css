@@ -1,3 +1,42 @@
-body {
+html, body {
     margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
 }
+
+body {
+    background-color: antiquewhite;
+}
+
+main, header{
+    width: 290px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 20px;
+}
+
+header{
+    padding-bottom: 25px;
+}
+
+.menu {
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.menu-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    border-bottom: 1px solid grey;
+}
+
+.plus-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+}
+
+
+
