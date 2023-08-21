@@ -13,47 +13,51 @@
     - meme picker app 
 
 5) Optional - change theme, add a meal deal discount, user rate order experience 0-5 stars.
-
 */
 
-import { menuArray } from "./data"
+import {menuArray} from "./data.js"
 
 
 function getOrderHtml() {
-
-    let menuHtml = 
-    `
+    let menuHtml = ''
+    menuArray.forEach(function(item){
+    menuHtml+= `
     <div class = "menu">
         <div class="menu-inner">
             <img src="">
-            <p class="item">${order.name}</p>
-            <p class="ingredients">${ingredients}</p>
-            <p class="prce">${price}</p>
+            <p class="item">${item.name}</p>
+            <p class="ingredients">${item.ingredients}</p>
+            <p class="price">${item.price}</p>
 
         </div>
     </div>
     `
-
-    let orderHtml = ''
+    })
+    return menuHtml
+   /* let orderHtml = ''
     orderHtml += 
     `
     <div class="order">
         <h2>Your Order</h2>
         <div class="order-inner">
-            <p class="item">${order.name}</p>
+            <p class="item">${item.name}</p>
             <a class="remove">remove</a>
-            <p class="price">${order.price}</p>
+            <p class="price">${item.price}</p>
             <p>Total Price</p>
             <p class="total">${totalPrice}</p>
-            <i class="fa-solid fa-plus ${plusIconClass}" data-plus="${order.id}"></i>
+            <i class="fa-solid fa-plus" data-plus="${item.id}"></i>
         </div>
     <div>
     `
+        */
+    
 }
+
+console.log(getOrderHtml())
 
 
 function render(){
-    document.getElementById('order-input-area').innerHTML = getOrderHtml()
+    document.getElementById('menu').innerHTML = getOrderHtml()
 }
 
 render()
