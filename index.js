@@ -17,42 +17,17 @@
 
 import {menuArray} from "./data.js"
 
-/*
-document.addEventListener('click', function(e){
-    if(e.target.dataset.plus){
-       handlePlusClick(e.target.dataset.plus) 
-    }
-    else if(e.target.dataset.remove){
-        handleRemoveClick(e.target.dataset.remove)
-    }
+console.log('menuArray:', menuArray);
 
-    function handlePlusClick(itemId){ 
-        const targetItemObj = menuArray.filter(function(item){
-            return item.id === itemId
-        })}
-       /* if (targetItemObj){
 
-            let orderHtml = ''
-            orderHtml += 
-            `
-            <div class="order">
-                <h2>Your Order</h2>
-                <div class="order-inner">
-                    <p class="item">${item.name}</p>
-                    <a class="remove" data-remove>remove</a>
-                    <p class="price">${item.price}</p>
-                    <p>Total Price</p>
-                    <p class="total">${totalPrice}</p>
-                    <i class="fa-solid fa-plus" data-plus="${item.id}"></i>
-                </div>
-            <div>
-                } else if (remove button click) {
-                    orderHtml = ''
-                }`
-                render()
-                }   
 
-                */
+function handlePlusClick(itemId) {
+    const targetItemObj = menuArray.filter(function(item) {
+        return item.id === itemId;
+    })[0];
+    console.log(targetItemObj)
+
+}
 
 function getOrderHtml() {
     let menuHtml = ''
@@ -60,7 +35,7 @@ function getOrderHtml() {
     menuHtml+= `
     <div class = "menu">
         <div class="menu-inner">
-                <div class="emoji-container>
+                <div class="emoji-container">
                 <span class="emoji">${item.emoji}</span>
                 </div>
                 <div class="itemInfo">
@@ -69,7 +44,7 @@ function getOrderHtml() {
                     <p class="price">${item.price}</p>
                     </div>
                 <div class="plus-container">
-                    <i class="fa-solid fa-plus" data-plus="${item.id}"></i>
+                    <i class="fa-solid fa-plus" data-plus= "${item.id}"></i>
                 </div>
 
                 <div>
@@ -87,9 +62,22 @@ function getOrderHtml() {
 
 console.log(getOrderHtml())
 
+function render() {
+    // Update the menu content
+    document.getElementById('menu').innerHTML = getOrderHtml();
 
-function render(){
-    document.getElementById('menu').innerHTML = getOrderHtml()
+    // Add event listeners after updating the content
+    document.querySelectorAll('.fa-plus').forEach(element => {
+        document.addEventListener('click', function(e) {
+            if (e.target.dataset.plus) {
+                const itemId = e.target.dataset.plus;
+                // Convert to number if needed
+                const itemIdNumber = parseInt(itemId); // Use parseFloat if you expect decimal numbers
+                handlePlusClick(itemIdNumber); // Pass the converted value to the function
+            }
+        });
+        
+    });
 }
 
 render()
