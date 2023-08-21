@@ -15,9 +15,18 @@
         <div class="menu" id="menu">
             <!-- menu items here-->
         </div>
-        <div class="order-input-area" id="order-input-area">
-            <!--order renders here with prices-->
-        </div>
+        <section class="checkout hidden">
+            <h3>Your order</h3>
+            <div class="orders">
+                <!-- individual order goes here -->
+            </div>
+            <hr/>
+            <div class="total-price">
+                <div>Total Price</div>
+                <div id="total-price">Price</div>
+            </div>
+            <button id="complete-order">Complete order</button>
+        </section>
     </main>
     <script src="index.js" type="module"></script>
 </body>

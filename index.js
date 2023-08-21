@@ -1,31 +1,41 @@
-/* 
-
-1) follow the design spec
-    - figma 
-
-2) render the menu options using JS
-   - twimba render function 
-
-3) Be able to add/remove items
-    -twimba like buttons 
-
-4) Have a payment model with a html form which should be required. 
-    - meme picker app 
-
-5) Optional - change theme, add a meal deal discount, user rate order experience 0-5 stars.
-*/
-
 import {menuArray} from "./data.js"
 
 console.log('menuArray:', menuArray);
 
+document.addEventListener('click', function(e) {
+    if (e.target.dataset.plus) {
+        const itemId = e.target.dataset.plus;
+        // Convert to number if needed
+        const itemIdNumber = parseInt(itemId); // Use parseFloat if you expect decimal numbers
+        handlePlusClick(itemIdNumber); // Pass the converted value to the function
+    }
+});
 
+let orderList = [];
+let orderHtml = '';
+let totalPrice = 0;
 
-function handlePlusClick(itemId) {
-    const targetItemObj = menuArray.filter(function(item) {
-        return item.id === itemId;
+function handlePlusClick(id) {
+    orderHtml = '';
+    const targetOrderObj = menuArray.filter(function(order) {
+        return order.id == id;
     })[0];
-    console.log(targetItemObj)
+    totalPrice = 0;
+    orderList.push({name: targetOrderObj.name, price: targetOrderObj.price, orderid: targetOrderObj.id});
+    document.querySelector(".checkout").classList.remove("hidden");
+    orderList.forEach(function(order) {
+        orderHtml += `<div class="order">
+                        <div class="order-name">
+                            <span class="order-name-name">${order.name}</span> 
+                            <span class="order-name-remove" data-order-number="${order.orderid}">Remove</span>
+                        </div>
+                        <div class="order-price">
+                            ${order.price}
+                        </div>
+                    </div>`
+                    
+    })
+    render()
 
 }
 
@@ -65,19 +75,8 @@ console.log(getOrderHtml())
 function render() {
     // Update the menu content
     document.getElementById('menu').innerHTML = getOrderHtml();
+    document.querySelector(".orders").innerHTML = orderHtml;
 
-    // Add event listeners after updating the content
-    document.querySelectorAll('.fa-plus').forEach(element => {
-        document.addEventListener('click', function(e) {
-            if (e.target.dataset.plus) {
-                const itemId = e.target.dataset.plus;
-                // Convert to number if needed
-                const itemIdNumber = parseInt(itemId); // Use parseFloat if you expect decimal numbers
-                handlePlusClick(itemIdNumber); // Pass the converted value to the function
-            }
-        });
-        
-    });
 }
 
 render()
