@@ -1,6 +1,12 @@
 import {menuArray} from "./data.js"
 
-console.log('menuArray:', menuArray);
+const completeOrder = document.getElementById('complete-order')
+const paymentModalInner = document.getElementById('payment-modal-inner')
+const paymentModal = document.getElementById('payment-modal')
+const paymentModalCloseBtn = document.getElementById('payment-modal-close-btn')
+const payBtn = document.getElementById('payBtn')
+
+
 
 document.addEventListener('click', function(e) {
     if (e.target.dataset.plus) {
@@ -11,12 +17,22 @@ document.addEventListener('click', function(e) {
         const orderId = parseInt(e.target.dataset.orderNumber);
         handleRemoveClick(orderId);
     }
-});
+}); 
 
+completeOrder.addEventListener('click', renderModal);
+
+paymentModalCloseBtn.addEventListener('click', closeModal)
+
+function closeModal(){
+    paymentModal.style.display = 'none'
+    render()
+}
 
 let orderList = [];
 let orderHtml = '';
 let totalPrice = 0;
+
+
 
 function handlePlusClick(id) {
     orderHtml = '';
@@ -70,6 +86,7 @@ function handleRemoveClick(orderId) {
      render();
 }
 
+
 function getOrderHtml() {
     let menuHtml = ''
     menuArray.forEach(function(item){
@@ -93,10 +110,27 @@ function getOrderHtml() {
 
     })
     return menuHtml
-   
+
 
     
 }
+
+function renderModal(){
+    paymentModalInner.innerHTML =  `
+        <h2>Enter Card Details</h2>
+        <form>
+            <input type="text" placeholder="Enter your full name" class='input'></input>
+            <input type="number" placeholder="Enter your card number" class='input'></input>
+            <input type="number" placeholder="CVV" class='input'></input>
+        </form>
+        <button class="complete-order" id="payBtn">Pay</button>`
+    paymentModal.style.display = 'flex'
+    paymentModal.style.flexDirection = 'column'
+    paymentModal.style.padding = '20px'
+    
+}
+
+/* Render function */
 
 console.log(getOrderHtml())
 
