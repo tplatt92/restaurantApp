@@ -9,34 +9,82 @@ body {
 }
 
 main, header{
-    width: 290px;
+    width: 350px;
     margin: 0 auto;
     background-color: white;
     padding: 20px;
+    box-shadow: 5px 5px 5px grey;
 }
 
 header{
     padding-bottom: 25px;
+    margin-top: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+}
+
+main {
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+    
 }
 
 .menu {
-    align-items: flex-start;
-    gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: solid 1px grey;
+    width: 100%;
 }
 
 .menu-inner {
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    gap: 20px;
+    align-items: center;
+    gap: 10px;
     border-bottom: 1px solid grey;
+    width: 100%;
+}
+
+.menu-content {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
 .plus-container {
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
+    flex-shrink: 0;
+    
 }
 
+.fa-plus {
+    font-size: 18px;
+    border: 2px solid #ccc; /* Set the border properties */
+    border-radius: 50%; /* Create a circular border */
+    padding: 5px; /* Add some padding within the circular border */
+    display: inline-block; /* Ensure the circular border maintains its shape */
+    text-align: center; /* Center the plus icon within the circular border */
+    
+}
 
+.fa-plus:hover {
+    background-color: #ccc;
+    color: white;
+}
 
+.emoji {
+    font-size: 50px;
+}
+
+.item {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.ingredients {
+    font-weight: 300;
+    font-size: 0.9rem;
+    color: grey;
+}

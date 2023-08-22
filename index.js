@@ -32,7 +32,7 @@ function handlePlusClick(id) {
                             <span class="order-name-remove" data-order-number="${order.orderid}">Remove</span>
                         </div>
                         <div class="order-price">
-                            ${order.price}
+                            £${order.price}
                         </div>
                     </div>`
                     
@@ -63,7 +63,7 @@ function handleRemoveClick(orderId) {
                             <span class="order-name-remove" data-order-number="${order.orderid}">Remove</span>
                         </div>
                         <div class="order-price">
-                            ${order.price}
+                            £${order.price}
                         </div>
                     </div>`;
     })
@@ -74,24 +74,21 @@ function getOrderHtml() {
     let menuHtml = ''
     menuArray.forEach(function(item){
     menuHtml+= `
-    <div class = "menu">
-        <div class="menu-inner">
-                <div class="emoji-container">
-                <span class="emoji">${item.emoji}</span>
-                </div>
-                <div class="itemInfo">
-                    <p class="item">${item.name}</p>
-                    <p class="ingredients">${item.ingredients}</p>
-                    <p class="price">${item.price}</p>
-                    </div>
-                <div class="plus-container">
-                    <i class="fa-solid fa-plus" data-plus= "${item.id}"></i>
-                </div>
-
-                <div>
-            </div>
+    <div class="menu">
+    <div class="menu-content">
+        <div class="emoji-container">
+            <span class="emoji">${item.emoji}</span>
+        </div>
+        <div class="itemInfo">
+            <p class="item">${item.name}</p>
+            <p class="ingredients">${item.ingredients}</p>
+            <p class="price">£${item.price}</p>
         </div>
     </div>
+    <div class="plus-container">
+        <i class="fa-solid fa-plus" data-plus="${item.id}"></i>
+    </div>
+</div>
     `
 
     })
@@ -108,7 +105,7 @@ function render() {
     document.querySelector(".orders").innerHTML = orderHtml;
     const totalPriceElement = document.querySelector('.total-price');
     if (totalPriceElement) {
-        totalPriceElement.textContent = 'Total Price: ' + totalPrice; // You can format this as needed
+        totalPriceElement.textContent = 'Total Price: £' + totalPrice; // You can format this as needed
     }
 
 }
