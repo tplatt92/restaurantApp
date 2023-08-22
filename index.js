@@ -5,11 +5,14 @@ console.log('menuArray:', menuArray);
 document.addEventListener('click', function(e) {
     if (e.target.dataset.plus) {
         const itemId = e.target.dataset.plus;
-        // Convert to number if needed
-        const itemIdNumber = parseInt(itemId); // Use parseFloat if you expect decimal numbers
-        handlePlusClick(itemIdNumber); // Pass the converted value to the function
+        const itemIdNumber = parseInt(itemId); 
+        handlePlusClick(itemIdNumber); 
+    }   else if (e.target.dataset.orderNumber) {
+        const orderId = parseInt(e.target.dataset.orderNumber);
+        handleRemoveClick(orderId);
     }
 });
+
 
 let orderList = [];
 let orderHtml = '';
@@ -37,6 +40,30 @@ function handlePlusClick(id) {
     })
     render()
 
+}
+
+function handleRemoveClick(orderId) {
+    orderHtml = ''; 
+    let itemRemoved = false;
+    orderList = orderList.filter(order => {
+        if (!itemRemoved && order.orderid === orderId){
+            itemRemoved = true;
+            return false;
+        }
+        return true;
+    });
+    orderList.forEach(function(order) {
+        orderHtml += `<div class="order">
+                        <div class="order-name">
+                            <span class="order-name-name">${order.name}</span> 
+                            <span class="order-name-remove" data-order-number="${order.orderid}">Remove</span>
+                        </div>
+                        <div class="order-price">
+                            ${order.price}
+                        </div>
+                    </div>`;
+    })
+     render();
 }
 
 function getOrderHtml() {
