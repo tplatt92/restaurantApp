@@ -1,14 +1,14 @@
 
 export const menuArray = [
     {
-        name: "Pizza",
-        ingredients: ["pepperoni", "mushroom", "mozzarella"],
+        name: "Four Cheese Pizza",
+        ingredients: ["emmental", "cheddar", "mozzarella", "feta"],
         id: 0,
         price: 14,
         emoji: "🍕"
     },
     {
-        name: "Hamburger",
+        name: "Cheeseburger",
         ingredients: ["beef", "cheese", "lettuce"],
         price: 12,
         emoji: "🍔",
