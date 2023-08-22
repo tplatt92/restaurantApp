@@ -23,7 +23,6 @@ function handlePlusClick(id) {
     const targetOrderObj = menuArray.filter(function(order) {
         return order.id == id;
     })[0];
-    totalPrice = 0;
     orderList.push({name: targetOrderObj.name, price: targetOrderObj.price, orderid: targetOrderObj.id});
     document.querySelector(".checkout").classList.remove("hidden");
     orderList.forEach(function(order) {
@@ -38,6 +37,7 @@ function handlePlusClick(id) {
                     </div>`
                     
     })
+    totalPrice += targetOrderObj.price;
     render()
 
 }
@@ -52,6 +52,10 @@ function handleRemoveClick(orderId) {
         }
         return true;
     });
+    const removedOrder = orderList.find(order => order.orderid === orderId);
+    if (removedOrder) {
+        totalPrice -= removedOrder.price;
+    }
     orderList.forEach(function(order) {
         orderHtml += `<div class="order">
                         <div class="order-name">
@@ -100,10 +104,14 @@ function getOrderHtml() {
 console.log(getOrderHtml())
 
 function render() {
-    // Update the menu content
     document.getElementById('menu').innerHTML = getOrderHtml();
     document.querySelector(".orders").innerHTML = orderHtml;
+    const totalPriceElement = document.querySelector('.total-price');
+    if (totalPriceElement) {
+        totalPriceElement.textContent = 'Total Price: ' + totalPrice; // You can format this as needed
+    }
 
 }
+
 
 render()
