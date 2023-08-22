@@ -16,18 +16,51 @@ main, header{
     box-shadow: 5px 5px 5px grey;
 }
 
-header{
-    padding-bottom: 25px;
-    margin-top: 30px;
-    border-top-left-radius: 30px;
-    border-top-right-radius: 30px;
-}
 
 main {
     border-bottom-left-radius: 30px;
     border-bottom-right-radius: 30px;
     
 }
+
+
+/*header styling */
+
+header{
+    padding-bottom: 25px;
+    margin-top: 30px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+}
+
+
+.background {
+    background-image: url(cheesePull.jpeg);
+    background-position: center;
+    height: 50px;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+
+}
+
+.background2 {
+    background-image: url(cheesePull.jpeg);
+    background-position: center;
+    height: 50px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+
+}
+
+
+.header-div {
+    color: black;
+    text-align: center;
+}
+
+
+/*menu styling */
 
 .menu {
     display: flex;
@@ -61,17 +94,18 @@ main {
 
 .fa-plus {
     font-size: 18px;
-    border: 2px solid #ccc; /* Set the border properties */
-    border-radius: 50%; /* Create a circular border */
-    padding: 5px; /* Add some padding within the circular border */
-    display: inline-block; /* Ensure the circular border maintains its shape */
-    text-align: center; /* Center the plus icon within the circular border */
+    border: 2px solid #ccc; 
+    border-radius: 50%; 
+    padding: 5px; 
+    display: inline-block; 
+    text-align: center; 
     
 }
 
 .fa-plus:hover {
     background-color: #ccc;
     color: white;
+    cursor: pointer;
 }
 
 .emoji {
@@ -87,4 +121,25 @@ main {
     font-weight: 300;
     font-size: 0.9rem;
     color: grey;
+}
+
+
+/* Order Styling */
+
+.order {
+    display: flex;
+}
+
+.order-name {
+    flex-grow: 2;
+}
+
+.order-name-remove {
+    font-size: 0.6rem;
+    color: grey;
+}
+
+.order-name-remove:hover {
+    text-decoration: underline;
+    cursor: pointer;
 }
